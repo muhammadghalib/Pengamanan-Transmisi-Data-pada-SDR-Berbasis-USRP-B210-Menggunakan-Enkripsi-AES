@@ -47,6 +47,35 @@ Menghapus Images
 Contoh lain:
 - docker rmi <repository_name>:<image_id_or_name>
 
+Membersihkan Docker
+- docker system df  
+  Melihat seluruh penggunaan memori di Docker.
+- docker system prune -a --volumes -f  
+  Menghapus semua data Docker secara menyeluruh, termasuk container, images, network, dan volume yang tidak terpakai.
+
+Mengelola Volume
+- docker volume ls  
+  Melihat daftar volume
+- docker volume rm <nama_volume>
+  Menghapus volume tertentu
+
+Mengelola File dalam Container
+Copy file dari container ke direktori Downloads:
+- docker cp CONTAINER_ID:/home/gnuradio-transmitter/persistent/NAMA_FILE ~/Downloads/
+  Transmitter
+- docker cp CONTAINER_ID:/home/gnuradio-receiver/persistent/NAMA_FILE ~/Downloads/  
+  Receiver
+
+
+
+
+
+
+
+
+
+
+
 
 
 
