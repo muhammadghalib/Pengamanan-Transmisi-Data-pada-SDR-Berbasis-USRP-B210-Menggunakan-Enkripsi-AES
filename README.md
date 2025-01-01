@@ -1,5 +1,6 @@
 # Sistem Keamanan Jaringan - Project Based Learning - Topik 38
 
+
 ## Command for install Docker in Kali
 - sudo apt-get update
 - sudo apt install -y docker.io
@@ -7,6 +8,7 @@
 - sudo usermod -aG docker $USER
 - docker --version
 - sudo systemctl status docker
+
 
 ## Command for install GNU Radio v3.7 on Docker
 for transmitter
@@ -72,6 +74,18 @@ Copy file dari direktori Downloads ke container
   Receiver  
 
 
+### Referensi
+Install Docker on Ubuntu
+- https://phoenixnap.com/kb/install-docker-on-ubuntu-20-04
+
+Install Docker on Kali
+- https://www.kali.org/docs/containers/installing-docker-on-kali/
+
+Repository GNU Radio on Docker from git-artes
+- https://github.com/git-artes/docker-gnuradio
+
+Onnocenter GNU Radio
+- http://onnocenter.or.id/wiki/index.php/GNURadio
 
 
 
