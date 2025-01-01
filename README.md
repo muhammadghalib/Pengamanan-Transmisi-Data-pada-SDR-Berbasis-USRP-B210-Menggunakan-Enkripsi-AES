@@ -1,124 +1,197 @@
 # Sistem Keamanan Jaringan - Project Based Learning - Topik 38
-  
-  
-## Command for install Docker in Kali or Ubuntu
-- sudo apt-get update
-- sudo apt install -y docker.io
-- sudo systemctl enable docker --now
-- sudo usermod -aG docker $USER
-- docker --version
-- sudo systemctl status docker
-  
-  
-## Command for install GNU Radio v3.7 on Docker
-for transmitter
-- git clone https://github.com/muhammadghalib/Docker-GNURadio
-- cd Docker-GNURadio
-- cd gnuradio-v37-transmitter
-- sudo docker build -t ubuntu:gnuradio-v37-transmitter .
-- sudo docker run --net=host --env="DISPLAY" --volume="$HOME/.Xauthority:/root/.Xauthority:rw" --privileged --device=/dev/bus/usb:/dev/bus/usb -v /dev/bus/usb:/dev/bus/usb --device=/dev/snd -v persistent-37-transmitter:/home/gnuradio-transmitter/persistent --group-add=audio -it ubuntu:gnuradio-v37-transmitter bash
-- gnuradio-companion
 
-for receiver
-- cd Docker-GNURadio
-- cd gnuradio-v37-receiver
-- sudo docker build -t ubuntu:gnuradio-v37-receiver .
-- sudo docker run --net=host --env="DISPLAY" --volume="$HOME/.Xauthority:/root/.Xauthority:rw" --privileged --device=/dev/bus/usb:/dev/bus/usb -v /dev/bus/usb:/dev/bus/usb --device=/dev/snd -v persistent-37-receiver:/home/gnuradio-receiver/persistent --group-add=audio -it ubuntu:gnuradio-v37-receiver bash
-- gnuradio-companion
-  
-  
-## Basic command in Docker
-Melihat Daftar Container
-- docker ps  
-  Melihat daftar container yang sedang berjalan.
-- docker ps -a  
-  Melihat semua container, baik yang sedang berjalan maupun yang sudah berhenti.
+## 📦 Instalasi Docker di Kali atau Ubuntu
+Berikut adalah langkah-langkah untuk menginstal Docker pada distribusi Kali atau Ubuntu:
 
-Mengelola Container
-- docker stop <container_id_or_name>  
-  Menghentikan container yang sedang berjalan.
-- docker rm <container_id_or_name>  
-  Menghapus container yang sudah berhenti.
+```bash
+sudo apt-get update
+sudo apt install -y docker.io
+sudo systemctl enable docker --now
+sudo usermod -aG docker $USER
+docker --version
+sudo systemctl status docker
+```
 
-Melihat Daftar Images
-- docker images  
-  Melihat daftar image Docker yang tersimpan di sistem lokal.
+---
 
-Menghapus Images
-- docker rmi <image_id_or_name>  
-  Menghapus image dari sistem lokal.  
-Contoh lain:
-- docker rmi <repository_name>:<image_id_or_name>
+## 📡 Instalasi GNU Radio v3.7 di Docker
 
-Membersihkan Docker
-- docker system df  
-  Melihat seluruh penggunaan memori di Docker.
-- docker system prune -a --volumes -f  
-  Menghapus semua data Docker secara menyeluruh, termasuk container, images, network, dan volume yang tidak terpakai.
+### **Untuk Transmitter:**
+1. Clone repository:
+   ```bash
+   git clone https://github.com/muhammadghalib/Docker-GNURadio
+   ```
+2. Masuk ke direktori transmitter:
+   ```bash
+   cd Docker-GNURadio/gnuradio-v37-transmitter
+   ```
+3. Build image Docker:
+   ```bash
+   sudo docker build -t ubuntu:gnuradio-v37-transmitter .
+   ```
+4. Jalankan container:
+   ```bash
+   sudo docker run --net=host \
+      --env="DISPLAY" \
+      --volume="$HOME/.Xauthority:/root/.Xauthority:rw" \
+      --privileged \
+      --device=/dev/bus/usb:/dev/bus/usb \
+      -v /dev/bus/usb:/dev/bus/usb \
+      --device=/dev/snd \
+      -v persistent-37-transmitter:/home/gnuradio-transmitter/persistent \
+      --group-add=audio \
+      -it ubuntu:gnuradio-v37-transmitter bash
+   ```
+5. Jalankan GNU Radio:
+   ```bash
+   gnuradio-companion
+   ```
 
-Mengelola Volume
-- docker volume ls  
-  Melihat daftar volume
-- docker volume rm <nama_volume>
-  Menghapus volume tertentu  
+### **Untuk Receiver:**
+1. Masuk ke direktori receiver:
+   ```bash
+   cd Docker-GNURadio/gnuradio-v37-receiver
+   ```
+2. Build image Docker:
+   ```bash
+   sudo docker build -t ubuntu:gnuradio-v37-receiver .
+   ```
+3. Jalankan container:
+   ```bash
+   sudo docker run --net=host \
+      --env="DISPLAY" \
+      --volume="$HOME/.Xauthority:/root/.Xauthority:rw" \
+      --privileged \
+      --device=/dev/bus/usb:/dev/bus/usb \
+      -v /dev/bus/usb:/dev/bus/usb \
+      --device=/dev/snd \
+      -v persistent-37-receiver:/home/gnuradio-receiver/persistent \
+      --group-add=audio \
+      -it ubuntu:gnuradio-v37-receiver bash
+   ```
+4. Jalankan GNU Radio:
+   ```bash
+   gnuradio-companion
+   ```
 
-Copy file dari container ke direktori Downloads  
-- docker cp CONTAINER_ID:/home/gnuradio-transmitter/persistent/NAMA_FILE ~/Downloads/  
-  Transmitter  
-- docker cp CONTAINER_ID:/home/gnuradio-receiver/persistent/NAMA_FILE ~/Downloads/  
-  Receiver  
-  
-Copy file dari direktori Downloads ke container  
-- docker cp ~/Downloads/NAMA_FILE CONTAINER_ID:/home/gnuradio-transmitter/persistent/  
-  Transmitter  
-- docker cp ~/Downloads/NAMA_FILE CONTAINER_ID:/home/gnuradio-receiver/persistent/  
-  Receiver
+---
 
-  
-## Basic command on UHD
-- uhd_find_devices
-- uhd_usrp_probe
-  
-  
-## Command for install the latest of UHD
-- sudo add-apt-repository ppa:ettusresearch/uhd
-- sudo apt install uhd-host
+## 🛠️ Perintah Dasar Docker
 
-  
-## Command for remove UHD
-- sudo apt remove uhd-host
+### **Melihat Daftar Container**
+- Container yang sedang berjalan:
+  ```bash
+  docker ps
+  ```
+- Semua container (berjalan dan berhenti):
+  ```bash
+  docker ps -a
+  ```
 
-  
-## Referensi
-Install Docker on Ubuntu
-- https://phoenixnap.com/kb/install-docker-on-ubuntu-20-04
+### **Mengelola Container**
+- Menghentikan container:
+  ```bash
+  docker stop <container_id_or_name>
+  ```
+- Menghapus container:
+  ```bash
+  docker rm <container_id_or_name>
+  ```
 
-Install Docker on Kali
-- https://www.kali.org/docs/containers/installing-docker-on-kali/
+### **Melihat dan Mengelola Images**
+- Daftar image yang tersimpan:
+  ```bash
+  docker images
+  ```
+- Menghapus image:
+  ```bash
+  docker rmi <image_id_or_name>
+  ```
+  Contoh:
+  ```bash
+  docker rmi <repository_name>:<image_id_or_name>
+  ```
 
-Install GNU Radio
-- https://wiki.gnuradio.org/index.php/InstallingGR
+### **Membersihkan Docker**
+- Melihat penggunaan memori Docker:
+  ```bash
+  docker system df
+  ```
+- Menghapus data yang tidak terpakai:
+  ```bash
+  docker system prune -a --volumes -f
+  ```
 
-Install UHD
-- https://wiki.gnuradio.org/index.php?title=Draft-AN-445#Building_and_installing_UHD_from_source_code
+### **Mengelola Volume**
+- Melihat daftar volume:
+  ```bash
+  docker volume ls
+  ```
+- Menghapus volume:
+  ```bash
+  docker volume rm <nama_volume>
+  ```
 
-Repository GNU Radio on Docker from git-artes
-- https://github.com/git-artes/docker-gnuradio
+### **Mengelola File**
+- Menyalin file dari container ke direktori Downloads:
+  - **Transmitter:**
+    ```bash
+    docker cp CONTAINER_ID:/home/gnuradio-transmitter/persistent/NAMA_FILE ~/Downloads/
+    ```
+  - **Receiver:**
+    ```bash
+    docker cp CONTAINER_ID:/home/gnuradio-receiver/persistent/NAMA_FILE ~/Downloads/
+    ```
 
-Onnocenter GNU Radio
-- http://onnocenter.or.id/wiki/index.php/GNURadio
+- Menyalin file dari Downloads ke container:
+  - **Transmitter:**
+    ```bash
+    docker cp ~/Downloads/NAMA_FILE CONTAINER_ID:/home/gnuradio-transmitter/persistent/
+    ```
+  - **Receiver:**
+    ```bash
+    docker cp ~/Downloads/NAMA_FILE CONTAINER_ID:/home/gnuradio-receiver/persistent/
+    ```
 
-Essential docker images from openverso
-- https://hub.docker.com/u/openverso
+---
 
+## 🌐 Perintah Dasar UHD
+- **Menemukan perangkat UHD:**
+  ```bash
+  uhd_find_devices
+  ```
+- **Memeriksa detail perangkat UHD:**
+  ```bash
+  uhd_usrp_probe
+  ```
 
+---
 
+## ⚙️ Instalasi dan Penghapusan UHD
 
+### **Menginstal UHD versi terbaru**
+```bash
+sudo add-apt-repository ppa:ettusresearch/uhd
+sudo apt install uhd-host
+```
 
+### **Menghapus UHD**
+```bash
+sudo apt remove uhd-host
+```
 
+---
 
+## 🔗 Referensi
+- **Instalasi Docker di Ubuntu:** [PhoenixNAP](https://phoenixnap.com/kb/install-docker-on-ubuntu-20-04)
+- **Instalasi Docker di Kali Linux:** [Kali Docs](https://www.kali.org/docs/containers/installing-docker-on-kali/)
+- **Instalasi GNU Radio:** [GNU Radio Wiki](https://wiki.gnuradio.org/index.php/InstallingGR)
+- **Instalasi UHD:** [GNU Radio UHD](https://wiki.gnuradio.org/index.php?title=Draft-AN-445#Building_and_installing_UHD_from_source_code)
+- **Repository Docker GNU Radio:** [Git Artes](https://github.com/git-artes/docker-gnuradio)
+- **Onnocenter GNU Radio:** [Onnocenter](http://onnocenter.or.id/wiki/index.php/GNURadio)
+- **Essential Docker Images:** [OpenVerso Docker Hub](https://hub.docker.com/u/openverso)
 
+---
 
-
-
+💡 **Catatan:** Pastikan semua langkah dijalankan dengan hak akses yang memadai dan ikuti panduan sesuai kebutuhan proyek Anda.
 
