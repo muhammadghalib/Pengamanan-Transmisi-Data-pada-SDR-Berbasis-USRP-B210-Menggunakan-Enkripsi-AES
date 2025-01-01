@@ -25,8 +25,8 @@ for receiver
 - gnuradio-companion
 
 ## Basic command in Docker
-- docker ps -> Melihat daftar container yang sedang berjalan
-- docker ps -a -> Melihat semua daftar container yang sedang berjalan atau tidak
+- docker ps             -> Melihat daftar container yang sedang berjalan
+- docker ps -a          -> Melihat semua daftar container yang sedang berjalan atau tidak
 
 
 
