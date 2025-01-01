@@ -43,7 +43,7 @@ Melihat Daftar Images
 
 Menghapus Images
 - docker rmi <image_id_or_name>  
-  Menghapus image dari sistem lokal.  
+  Menghapus image dari sistem lokal.
 Contoh lain:
 - docker rmi <repository_name>:<image_id_or_name>
 
