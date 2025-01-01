@@ -1,6 +1,6 @@
 # Sistem Keamanan Jaringan - Project Based Learning - Topik 38
-
-
+  
+  
 ## Command for install Docker in Kali
 - sudo apt-get update
 - sudo apt install -y docker.io
@@ -8,8 +8,8 @@
 - sudo usermod -aG docker $USER
 - docker --version
 - sudo systemctl status docker
-
-
+  
+  
 ## Command for install GNU Radio v3.7 on Docker
 for transmitter
 - git clone https://github.com/muhammadghalib/Docker-GNURadio
@@ -72,8 +72,8 @@ Copy file dari direktori Downloads ke container
   Transmitter  
 - docker cp ~/Downloads/NAMA_FILE CONTAINER_ID:/home/gnuradio-receiver/persistent/  
   Receiver  
-
-
+  
+  
 ### Referensi
 Install Docker on Ubuntu
 - https://phoenixnap.com/kb/install-docker-on-ubuntu-20-04
