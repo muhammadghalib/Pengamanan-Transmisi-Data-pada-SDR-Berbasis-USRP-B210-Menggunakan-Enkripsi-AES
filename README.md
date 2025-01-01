@@ -16,3 +16,9 @@ for transmitter
 - sudo docker build -t ubuntu:gnuradio-v37-transmitter .
 - sudo docker run --net=host --env="DISPLAY" --volume="$HOME/.Xauthority:/root/.Xauthority:rw" --privileged --device=/dev/bus/usb:/dev/bus/usb -v /dev/bus/usb:/dev/bus/usb --device=/dev/snd -v persistent-37-transmitter:/home/gnuradio-transmitter/persistent --group-add=audio -it ubuntu:gnuradio-v37-transmitter bash
 - gnuradio-companion
+
+for receiver
+- cd Docker-GNURadio
+- sudo docker build -t ubuntu:gnuradio-v37-receiver .
+- sudo docker run --net=host --env="DISPLAY" --volume="$HOME/.Xauthority:/root/.Xauthority:rw" --privileged --device=/dev/bus/usb:/dev/bus/usb -v /dev/bus/usb:/dev/bus/usb --device=/dev/snd -v persistent-37-receiver:/home/gnuradio-receiver/persistent --group-add=audio -it ubuntu:gnuradio-v37-receiver bash
+- gnuradio-companion
