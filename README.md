@@ -31,6 +31,21 @@ Melihat Daftar Container
 - docker ps -a  
   Melihat semua container, baik yang sedang berjalan maupun yang sudah berhenti.
 
+Mengelola Container
+- docker stop <container_id_or_name>  
+  Menghentikan container yang sedang berjalan.
+- docker rm <container_id_or_name>  
+  Menghapus container yang sudah berhenti.
+
+Melihat Daftar Images
+- docker images  
+  Melihat daftar image Docker yang tersimpan di sistem lokal.
+
+Menghapus Images
+- docker rmi <image_id_or_name>  
+  Menghapus image dari sistem lokal.
+Contoh lain:
+- docker rmi <repository_name>:<image_id_or_name>
 
 
 
