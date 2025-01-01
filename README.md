@@ -26,9 +26,9 @@ for receiver
 
 ## Basic command in Docker
 Melihat Daftar Container
-- docker ps
+- docker ps  
   Melihat daftar container yang sedang berjalan.
-- docker ps -a
+- docker ps -a  
   Melihat semua container, baik yang sedang berjalan maupun yang sudah berhenti.
 
 
