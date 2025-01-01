@@ -60,11 +60,16 @@ Mengelola Volume
   Menghapus volume tertentu
 
 Mengelola File dalam Container
-Copy file dari container ke direktori Downloads:
-- docker cp CONTAINER_ID:/home/gnuradio-transmitter/persistent/NAMA_FILE ~/Downloads/
+Copy file dari container ke direktori Downloads  
+- docker cp CONTAINER_ID:/home/gnuradio-transmitter/persistent/NAMA_FILE ~/Downloads/  
   Transmitter
 - docker cp CONTAINER_ID:/home/gnuradio-receiver/persistent/NAMA_FILE ~/Downloads/  
   Receiver
+Copy file dari direktori Downloads ke container
+- docker cp ~/Downloads/NAMA_FILE CONTAINER_ID:/home/gnuradio-transmitter/persistent/  
+  Transmitter
+- docker cp ~/Downloads/NAMA_FILE CONTAINER_ID:/home/gnuradio-receiver/persistent/  
+  Receiver  
 
 
 
