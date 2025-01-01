@@ -28,7 +28,7 @@ sudo systemctl status docker
 
 ## 📡 Instalasi GNU Radio v3.7 di Docker
 
-### **Untuk Transmitter:**
+### **Untuk Transmitter**
 1. Clone repository:
    ```bash
    git clone https://github.com/muhammadghalib/Docker-GNURadio
@@ -59,7 +59,7 @@ sudo systemctl status docker
    gnuradio-companion
    ```
 
-### **Untuk Receiver:**
+### **Untuk Receiver**
 1. Masuk ke direktori receiver:
    ```bash
    cd Docker-GNURadio/gnuradio-v37-receiver
