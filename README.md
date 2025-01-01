@@ -167,7 +167,19 @@ sudo systemctl status docker
 
 ---
 
-## ⚙️ Instalasi dan Penghapusan UHD
+## ⚙️ Instalasi dan Penghapusan GNU Radio & UHD
+
+### **Menginstal GNU Radio versi terbaru**
+```bash
+sudo apt-get install gnuradio
+```
+
+### **Menghapus GNU Radio**
+```bash
+sudo apt-get remove --purge gnuradio
+sudo apt-get autoremove
+sudo apt-get autoclean
+```
 
 ### **Menginstal UHD versi terbaru**
 ```bash
