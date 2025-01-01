@@ -1,7 +1,7 @@
 # Sistem Keamanan Jaringan - Project Based Learning - Topik 38
   
   
-## Command for install Docker in Kali
+## Command for install Docker in Kali or Ubuntu
 - sudo apt-get update
 - sudo apt install -y docker.io
 - sudo systemctl enable docker --now
@@ -72,8 +72,22 @@ Copy file dari direktori Downloads ke container
 - docker cp ~/Downloads/NAMA_FILE CONTAINER_ID:/home/gnuradio-transmitter/persistent/  
   Transmitter  
 - docker cp ~/Downloads/NAMA_FILE CONTAINER_ID:/home/gnuradio-receiver/persistent/  
-  Receiver  
+  Receiver
+
   
+## Basic command on UHD
+- uhd_find_devices
+- uhd_usrp_probe
+  
+  
+## Command for install the latest of UHD
+- sudo add-apt-repository ppa:ettusresearch/uhd
+- sudo apt install uhd-host
+
+  
+## Command for remove UHD
+- sudo apt remove uhd-host
+
   
 ## Referensi
 Install Docker on Ubuntu
@@ -81,6 +95,12 @@ Install Docker on Ubuntu
 
 Install Docker on Kali
 - https://www.kali.org/docs/containers/installing-docker-on-kali/
+
+Install GNU Radio
+- https://wiki.gnuradio.org/index.php/InstallingGR
+
+Install UHD
+- https://wiki.gnuradio.org/index.php?title=Draft-AN-445#Building_and_installing_UHD_from_source_code
 
 Repository GNU Radio on Docker from git-artes
 - https://github.com/git-artes/docker-gnuradio
