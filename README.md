@@ -1,5 +1,17 @@
 # Sistem Keamanan Jaringan - Project Based Learning - Topik 38
 
+## Deskripsi proyek
+Proyek ini bertujuan untuk mengimplementasikan Virtual Private Network (VPN) pada jaringan Software-Defined Radio (SDR) berbasis USRP B210 untuk mengamankan transmisi data telekomunikasi. Dalam proyek ini, OpenVPN akan digunakan untuk membangun dan mengkonfigurasi VPN yang melindungi jalur komunikasi SDR, sehingga mencegah penyadapan dan manipulasi data. Penggunaan USRP B210 sebagai transceiver SDR memungkinkan transmisi data dengan fleksibilitas tinggi, sementara GNU Radio akan digunakan untuk memproses sinyal. Dengan mengintegrasikan OpenVPN, proyek ini bertujuan untuk meningkatkan keamanan komunikasi data dalam jaringan SDR yang sensitif terhadap potensi ancaman. Metodologi yang diterapkan mencakup konfigurasi VPN menggunakan OpenVPN pada sistem berbasis Kali Linux, di mana VPN ini akan memastikan bahwa transmisi data tetap aman dan terlindungi dari gangguan luar.
+
+## Hardware yang Digunakan
+- 1x USRP B210 sebagai transmitter
+- 1x USRP B210 sebagai receiver
+  
+## Software yang Digunakan
+- Ubuntu atau Kali
+- Docker
+- GNU Radio v3.7
+
 ## 📦 Instalasi Docker di Kali atau Ubuntu
 Berikut adalah langkah-langkah untuk menginstal Docker pada distribusi Kali atau Ubuntu:
 
