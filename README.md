@@ -217,5 +217,5 @@ sudo apt remove uhd-host
 
 ---
 
-💡 **Catatan:** Pastikan semua langkah dijalankan dengan hak akses yang memadai dan ikuti panduan sesuai kebutuhan proyek Anda.
+💡 **STAY COURIOUS**
 
