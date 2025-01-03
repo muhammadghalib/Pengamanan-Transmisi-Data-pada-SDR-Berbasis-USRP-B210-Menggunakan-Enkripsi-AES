@@ -217,5 +217,5 @@ sudo apt remove uhd-host
 
 ---
 
-💡 **STAY COURIOUS**
+💡 **STAY CURIOUS**
 
