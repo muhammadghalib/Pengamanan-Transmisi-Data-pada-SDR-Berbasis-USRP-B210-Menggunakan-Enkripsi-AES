@@ -8,7 +8,7 @@ Proyek ini bertujuan untuk mengimplementasikan Virtual Private Network (VPN) pad
 - 1x USRP B210 sebagai receiver
   
 ## 💻 Software yang Digunakan
-- Ubuntu atau Kali
+- Ubuntu
 - Docker
 - GNU Radio v3.7
 
@@ -88,9 +88,13 @@ sudo systemctl status docker
 
 ---
 
-## Instalasi Visual Studio Code
+## </> Menggunakan Visual Studio Code di proyek
 
-
+- Install Visual Studio Code dari AppCenter. AppCenter adalah toko aplikasi bawaan di Ubuntu 24.04. Untuk membukanya.
+- Install ekstensi Docker.
+- Install ekstensi Dev Containers.
+- Buka ekstensi Docker di panel kiri VSCode.
+- Pastikan ada 2 container di panel Container, yaitu TRansmitter dan Receiver.
 
 ## 🛠️ Perintah Dasar Docker
 
