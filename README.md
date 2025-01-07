@@ -216,6 +216,7 @@ Berikut adalah langkah-langkah lengkap untuk menginstal Docker pada distribusi U
       ```
 
       ![](./Documentation/Images/Memulai%20Proyek%20dengan%20Visual%20Studio%20Code/Transmitter/4.png)  
+      ![](./Documentation/Images/Memulai%20Proyek%20dengan%20Visual%20Studio%20Code/Transmitter/2.png)
 
       **Catatan**: Setelah mengetahui alamat serial USRP B210 untuk transmitter maka masukkan alamat serial tersebut ke flowgraph transmitter pada block **UHD: USRP Sink** di Device Address.
 
@@ -335,7 +336,8 @@ Berikut adalah langkah-langkah lengkap untuk menginstal Docker pada distribusi U
       uhd_find_devices
       ```
 
-      ![](./Documentation/Images/Memulai%20Proyek%20dengan%20Visual%20Studio%20Code/Transmitter/4.png)
+      ![](./Documentation/Images/Memulai%20Proyek%20dengan%20Visual%20Studio%20Code/Receiver/4.png)   
+      ![](./Documentation/Images/Memulai%20Proyek%20dengan%20Visual%20Studio%20Code/Receiver/3.png)
 
       **Catatan**: Setelah mengetahui alamat serial USRP B210 untuk receiver maka masukkan alamat serial tersebut ke flowgraph transmitter pada block **UHD: USRP Source** di Device Address.
 
