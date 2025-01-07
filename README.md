@@ -103,8 +103,12 @@ sudo systemctl status docker
 1. Klik kanan pada container ubuntu:gnuradio-v37-transmitter lalu start.
 2. Klik kanan lagi pada container ubuntu:gnuradio-v37-transmitter lalu Attach Visual Studio Code.
 3. Buka terminal dengan cara menekan ctrl+shift+p lalu ketikkan View:Toggle Terminal dan pastikan anda berada di gnuradio-transmitter@muhammad-ghalib.
-4. Didalam folder persistent buat file send_message.txt dan berikan pesan yang akan dikirimkan ke USRP B210 receiver didalam file tersebut.
-5. Buat file aes_encryptor_ecb.py dan masukkan kode dibawah ini. kode ini berguna untuk mengenkripsi pesan yang ada didalam file send_message.txt dengan algoritma enkripsi AES dengan mode ECB menggunakan secret key 1111111111111111.
+4. Didalam folder persistent buat file `send_message.txt` dan berikan pesan yang akan dikirimkan ke USRP B210 receiver didalam file tersebut.
+5. Di terminal jalankan perintah ini untuk memasang library pycryptodome.
+   ```bash
+   pip install pycryptodome
+   ```
+6. Buat file `aes_encryptor_ecb.py` dan masukkan kode dibawah ini. kode ini berguna untuk mengenkripsi pesan yang ada didalam file send_message.txt dengan algoritma enkripsi AES dengan mode ECB menggunakan secret key 1111111111111111.
    ```bash
    from Crypto.Cipher import AES
    from Crypto.Util.Padding import pad
@@ -127,8 +131,8 @@ sudo systemctl status docker
 
    print("Pesan dari '{}' telah berhasil dienkripsi dan disimpan di '{}'.".format(input_file, output_file))
    ```
-6. Buat file encrypted_send_message.txt. file ini berguna untuk menyimpan hasil enkripsi dalam bentuk HEX.
-7. Buat file run_transmitter.sh. file ini berguna untuk menjalankan perintah enkripsi dan memulai transmisi pesan.
+7. Buat file `encrypted_send_message.txt`. file ini berguna untuk menyimpan hasil enkripsi dalam bentuk HEX.
+8. Buat file `run_transmitter.sh`. file ini berguna untuk menjalankan perintah enkripsi dan memulai transmisi pesan.
    ```bash
    echo "Step 1 = Menjalankan aes_encryptor_ecb.py ..."
    python aes_encryptor_ecb.py
@@ -144,25 +148,25 @@ sudo systemctl status docker
        exit 1
    fi
    ```
-8. Di terminal jalankan perintah ini lalu enter.
+9. Di terminal jalankan perintah ini lalu enter.
     ```bash
     chmod +x run_transmitter.sh
     ```
-9. Jalankan GNU Radio di terminal.
+10. Jalankan GNU Radio di terminal.
     ```bash
     gnuradio-companion
     ```
-10. Mulai menggambar flowgraph atau import file transmitter.grc ke dalam folder persistent.
-11. Di terminal jalankan perintah ini untuk memastikan USRP B210 apakah terhubung.
+11. Mulai menggambar flowgraph atau import file `transmitter.grc` ke dalam folder persistent.
+12. Di terminal jalankan perintah ini untuk memastikan USRP B210 apakah terhubung.
     ```bash
     uhd_find_devices
     ```
-12. Run flowgraph untuk menghasilkan file top_block.py setelah itu stop flowgraph.
-13. Di terminal jalankan perintah ini lalu enter.
+13. Run flowgraph untuk menghasilkan file `top_block.py` setelah itu stop flowgraph.
+14. Di terminal jalankan perintah ini lalu enter.
     ```bash
     ./run_transmitter.sh
     ```
-14. Anda akan melihat Transmitter FFT Plot dengan grafik sinyal seperti ini.
+15. Anda akan melihat Transmitter FFT Plot dengan grafik sinyal seperti ini.
 
 ### **Receiver**
 1. Klik kanan pada container ubuntu:gnuradio-v37-receiver lalu start.
