@@ -12,7 +12,7 @@ Proyek ini bertujuan untuk mengimplementasikan Virtual Private Network (VPN) pad
 - Docker
 - GNU Radio v3.7
 
-## 📦 Instalasi Docker di Kali atau Ubuntu
+## 📦 Instalasi Docker
 Berikut adalah langkah-langkah untuk menginstal Docker pada distribusi Kali atau Ubuntu:
 
 ```bash
@@ -88,13 +88,96 @@ sudo systemctl status docker
 
 ---
 
-## </> Menggunakan Visual Studio Code di proyek
+## </> Instalasi Visual Studio Code dan Ekstensi
 
-- Install Visual Studio Code dari AppCenter. AppCenter adalah toko aplikasi bawaan di Ubuntu 24.04. Untuk membukanya.
-- Install ekstensi Docker.
-- Install ekstensi Dev Containers.
-- Buka ekstensi Docker di panel kiri VSCode.
-- Pastikan ada 2 container di panel Container, yaitu TRansmitter dan Receiver.
+### **Memasang Ekstensi**
+1. Install Visual Studio Code dari AppCenter.
+2. Install ekstensi Docker.
+3. Install ekstensi Dev Containers.
+4. Buka ekstensi Docker di panel kiri VSCode.
+5. Pastikan ada 2 container di panel Container, yaitu Transmitter dan Receiver.
+
+## Memulai Bekerja dengan Visual Studio Code
+
+### **Transmitter**
+1. Klik kanan pada container ubuntu:gnuradio-v37-transmitter lalu start.
+2. Klik kanan lagi pada container ubuntu:gnuradio-v37-transmitter lalu Attach Visual Studio Code.
+3. Buka terminal dengan cara menekan ctrl+shift+p lalu ketikkan View:Toggle Terminal dan pastikan anda berada di gnuradio-transmitter@muhammad-ghalib.
+4. Didalam folder persistent buat file send_message.txt dan berikan pesan yang akan dikirimkan ke USRP B210 receiver didalam file tersebut.
+5. Buat file aes_encryptor_ecb.py dan masukkan kode dibawah ini. kode ini berguna untuk mengenkripsi pesan yang ada didalam file send_message.txt dengan algoritma enkripsi AES dengan mode ECB menggunakan secret key 1111111111111111.
+   ```bash
+   from Crypto.Cipher import AES
+   from Crypto.Util.Padding import pad
+   import binascii
+
+   input_file = "send_message.txt"
+   output_file = "encrypted_send_message.txt"
+
+   # Secret Key (harus 16, 24, atau 32 byte)
+   secret_key = b"1111111111111111"[:16]
+
+   with open(input_file, "r") as file:
+       plaintext = file.read()
+
+   cipher = AES.new(secret_key, AES.MODE_ECB)
+   ciphertext = cipher.encrypt(pad(plaintext.encode('utf-8'), AES.block_size))
+
+   with open(output_file, "w") as file:
+       file.write(binascii.hexlify(ciphertext).decode('utf-8') + "\n")
+
+   print("Pesan dari '{}' telah berhasil dienkripsi dan disimpan di '{}'.".format(input_file, output_file))
+   ```
+7. Buat file encrypted_send_message.txt. file ini berguna untuk menyimpan hasil enkripsi dalam bentuk HEX.
+8. Buat file run_transmitter.sh. file ini berguna untuk menjalankan perintah enkripsi dan memulai transmisi pesan.
+   ```bash
+   echo "Step 1 = Menjalankan aes_encryptor_ecb.py ..."
+   python aes_encryptor_ecb.py
+   if [ $? -ne 0 ]; then
+       echo "Eksekusi aes_encryptor_ecb.py gagal."
+       exit 1
+   fi
+
+   echo -e "\nStep 2 = Menjalankan top_block.py..."
+   python top_block.py
+   if [ $? -ne 0 ]; then
+       echo "Eksekusi top_block.py gagal."
+       exit 1
+   fi
+   ```
+10. Di terminal jalankan perintah ini lalu enter.
+    ```bash
+    chmod +x run_transmitter.sh
+    ```
+12. Jalankan GNU Radio di terminal.
+    ```bash
+    gnuradio-companion
+    ```
+13. Mulai menggambar flowgraph atau import file transmitter.grc ke dalam folder persistent.
+14. Di terminal jalankan perintah ini untuk memastikan USRP B210 apakah terhubung.
+    ```bash
+    uhd_find_devices
+    ```
+16. Run flowgraph untuk menghasilkan file top_block.py setelah itu stop flowgraph.
+17. Di terminal jalankan perintah ini lalu enter.
+    ```bash
+    ./run_transmitter.sh
+    ```
+18. Anda akan melihat Transmitter FFT Plot dengan grafik sinyal seperti ini.
+
+### **Receiver**
+1. Klik kanan pada container ubuntu:gnuradio-v37-receiver lalu start.
+2. Klik kanan lagi pada container ubuntu:gnuradio-v37-receiver lalu Attach Visual Studio Code.
+3. Buka terminal dengan cara menekan ctrl+shift+p lalu ketikkan View:Toggle Terminal dan pastikan anda berada di gnuradio-receiver@muhammad-ghalib.
+4. Didalam folder persistent buat file receive_message.txt. File ini berguna untuk menyimpan pesan yang diterima dari USRP B210 transmitter.
+5. Buat file aes_decryptor_ecb.py dan masukkan kode dibawah ini. kode ini berguna untuk mengdekripsi pesan yang ada didalam file receive_message.txt dengan algoritma enkripsi AES dengan mode ECB menggunakan secret key 1111111111111111 dan menampilkan hasil dari dekripsinya diterminal.
+6. Buat file run_receiver.sh. file ini berguna untuk menjalankan perintah menerima tranmisi pesan dan dekripsi.
+7. Di terminal ketikkan chmod +x run_receiver.sh lalu enter.
+8. Jalankan GNU Radio dengan cara ketikkan gnuradio-companion di terminal.
+9. Mulai menggambar flowgraph atau import file receiver.grc ke dalam folder persistent.
+10. Pastikan USRP B210 sudah terhubung.
+11. Run flowgraph untuk menghasilkan file top_block.py setelah itu stop flowgraph.
+12. Di terminal ketikkan ./run_receiver.sh lalu enter.
+13. Anda akan melihat Transmitter FFT Plot dengan grafik sinyal seperti ini dan pesan asli yang sudah didekripsi di terminal.
 
 ## 🛠️ Perintah Dasar Docker
 
