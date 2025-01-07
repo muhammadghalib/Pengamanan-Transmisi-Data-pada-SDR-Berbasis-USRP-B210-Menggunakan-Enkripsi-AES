@@ -1,11 +1,10 @@
-# Sistem Keamanan Jaringan - Project Based Learning - Topik 26
+# ᯤ Sistem Keamanan Jaringan - Project Based Learning - Topik 26
 
 ## Deskripsi proyek
-Proyek ini bertujuan untuk mengimplementasikan Virtual Private Network (VPN) pada jaringan Software-Defined Radio (SDR) berbasis USRP B210 untuk mengamankan transmisi data telekomunikasi. Dalam proyek ini, OpenVPN akan digunakan untuk membangun dan mengkonfigurasi VPN yang melindungi jalur komunikasi SDR, sehingga mencegah penyadapan dan manipulasi data. Penggunaan USRP B210 sebagai transceiver SDR memungkinkan transmisi data dengan fleksibilitas tinggi, sementara GNU Radio akan digunakan untuk memproses sinyal. Dengan mengintegrasikan OpenVPN, proyek ini bertujuan untuk meningkatkan keamanan komunikasi data dalam jaringan SDR yang sensitif terhadap potensi ancaman. Metodologi yang diterapkan mencakup konfigurasi VPN menggunakan OpenVPN pada sistem berbasis Kali Linux, di mana VPN ini akan memastikan bahwa transmisi data tetap aman dan terlindungi dari gangguan luar.
+Proyek ini bertujuan untuk meningkatkan keamanan transmisi data pada perangkat Software-Defined Radio (SDR) berbasis USRP B210. Pendekatan yang digunakan adalah dengan mengimplementasikan enkripsi ringan berbasis Advanced Encryption Standard (AES) pada lapisan aplikasi SDR. Hal ini dilakukan untuk melindungi data yang dikirim melalui SDR dari risiko intersepsi dan manipulasi. Proyek ini memanfaatkan perangkat keras USRP B210 dan antena SDR, serta menggunakan perangkat lunak GNU Radio, OpenSSL, dan GQRX untuk membangun sistem yang aman. Dengan penerapan enkripsi ini, diharapkan data yang ditransmisikan melalui SDR dapat terlindungi dari penyadapan dan manipulasi yang berpotensi merugikan.
 
 ## 🔌 Hardware yang Digunakan
-- 1x USRP B210 sebagai transmitter
-- 1x USRP B210 sebagai receiver
+- 2x USRP B210
   
 ## 💻 Software yang Digunakan
 - Ubuntu 24.04
@@ -116,7 +115,7 @@ Berikut adalah langkah-langkah lengkap untuk menginstal Docker pada distribusi U
    - **ubuntu:gnuradio-v37-receiver**  
    ![](./Documentation/Images/Instalasi%20Visual%20Studio%20Code%20dan%20Ekstensi/3.png)
 
-## 🚀 Memulai Proyek dengan Visual Studio Code
+## 🚀 Memulai Proyek
 
 ### **Transmitter**
 1. Menjalankan Container
