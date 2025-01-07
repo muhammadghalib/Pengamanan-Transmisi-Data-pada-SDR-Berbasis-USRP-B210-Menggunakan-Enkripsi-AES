@@ -8,23 +8,40 @@ Proyek ini bertujuan untuk mengimplementasikan Virtual Private Network (VPN) pad
 - 1x USRP B210 sebagai receiver
   
 ## 💻 Software yang Digunakan
-- Ubuntu
+- Ubuntu 24.04
 - Docker
 - GNU Radio v3.7
 
 ## 📦 Instalasi Docker
-Berikut adalah langkah-langkah untuk menginstal Docker pada distribusi Kali atau Ubuntu:
+Berikut adalah langkah-langkah lengkap untuk menginstal Docker pada distribusi Ubuntu:
 
-```bash
-sudo apt-get update
-sudo apt install -y docker.io
-sudo systemctl enable docker --now
-sudo usermod -aG docker $USER
-docker --version
-sudo systemctl status docker
-```
+1. Perbarui daftar paket sistem:
+   ```bash
+   sudo apt-get update
+   ```
+2. Pasang Docker dengan perintah berikut:
+   ```bash
+   sudo apt install -y docker.io
+   ```
+3. Aktifkan layanan Docker agar berjalan otomatis saat sistem dinyalakan:
+   ```bash
+   sudo systemctl enable docker --now
+   ```
+4. Tambahkan pengguna Anda ke grup Docker untuk menghindari penggunaan `sudo` saat menjalankan perintah Docker:
+   ```bash
+   sudo usermod -aG docker $USER
+   ```
+   **Catatan:** Setelah menjalankan perintah ini, Anda perlu keluar dan masuk kembali agar perubahan grup diterapkan.
 
----
+5. Verifikasi instalasi Docker dengan mengecek versinya:
+   ```bash
+   docker --version
+   ```
+6. Periksa status layanan Docker untuk memastikan bahwa Docker berjalan dengan benar:
+   ```bash
+   sudo systemctl status docker
+   ```
+   ![](./Documentation/Images/Instalasi%20Docker/1.png)
 
 ## 📡 Instalasi GNU Radio v3.7 di Docker
 
@@ -86,19 +103,20 @@ sudo systemctl status docker
    exit
    ```
 
----
-
 ## </> Instalasi Visual Studio Code dan Ekstensi
 1. Unduh dan pasang **Visual Studio Code** dari [halaman resmi VS Code](https://code.visualstudio.com/) atau melalui **AppCenter** di ubuntu.
 2. Buka Visual Studio Code, lalu navigasikan ke tab **Extensions** di panel kiri.
 3. Cari dan pasang ekstensi **Docker**. Ekstensi ini memungkinkan Anda untuk mengelola container secara langsung dari dalam Visual Studio Code.
+    ![](./Documentation/Images/Instalasi%20Visual%20Studio%20Code%20dan%20Ekstensi/1.png)
 4. Cari dan pasang ekstensi **Dev Containers**. Ekstensi ini berguna untuk mengembangkan aplikasi di dalam container yang terisolasi dan telah dikonfigurasi sebelumnya.
+    ![](./Documentation/Images/Instalasi%20Visual%20Studio%20Code%20dan%20Ekstensi/2.png)
 5. Setelah ekstensi terpasang, buka tab **Docker** di panel kiri.
 6. Periksa pada bagian **Containers** di panel tersebut dan pastikan terdapat dua container aktif:
    - **ubuntu:gnuradio-v37-transmitter**
-   - **ubuntu:gnuradio-v37-receiver**
+   - **ubuntu:gnuradio-v37-receiver**  
+   ![](./Documentation/Images/Instalasi%20Visual%20Studio%20Code%20dan%20Ekstensi/3.png)
 
-## 🚀 Memulai Bekerja dengan Visual Studio Code
+## 🚀 Memulai Proyek dengan Visual Studio Code
 
 ### **Transmitter**
 1. Menjalankan Container
@@ -188,13 +206,18 @@ sudo systemctl status docker
      ```bash
      gnuradio-companion
      ```
-   - Anda dapat mulai menggambar **flowgraph** atau mengimpor file `transmitter.grc` ke dalam folder `persistent`.
+   - Anda dapat mulai menggambar **flowgraph** seperti dibawah ini atau mengimpor file `transmitter.grc` ke dalam folder `persistent`.
+   ![](./Documentation/Images/Memulai%20Proyek%20dengan%20Visual%20Studio%20Code/Transmitter/3.png)
 
 10. Memastikan USRP B210 Terhubung
     - Jalankan perintah berikut untuk memeriksa koneksi dengan perangkat **USRP B210**:
       ```bash
       uhd_find_devices
       ```
+
+      ![](./Documentation/Images/Memulai%20Proyek%20dengan%20Visual%20Studio%20Code/Transmitter/4.png)  
+
+      **Catatan**: Setelah mengetahui alamat serial USRP B210 untuk transmitter maka masukkan alamat serial tersebut ke flowgraph transmitter pada block **UHD: USRP Sink** di Device Address.
 
 11. Menjalankan dan Menghentikan Flowgraph
     - Jalankan **flowgraph** untuk menghasilkan file `top_block.py`.
@@ -205,7 +228,8 @@ sudo systemctl status docker
       ```bash
       ./run_transmitter.sh
       ```
-    - Jika berhasil, Anda akan melihat **Transmitter FFT Plot** dengan grafik sinyal seperti yang diharapkan.
+    - Jika berhasil, Anda akan melihat **Transmitter FFT Plot** dengan grafik sinyal seperti yang diharapkan.  
+    ![](./Documentation/Images/Memulai%20Proyek%20dengan%20Visual%20Studio%20Code/Transmitter/1.jpg)
 
 ### **Receiver**
 1. Menjalankan Container
@@ -292,9 +316,9 @@ sudo systemctl status docker
      ```bash
      cd persistent
      ```
-   - Berikan izin eksekusi ke file `run_transmitter.sh`:
+   - Berikan izin eksekusi ke file `run_receiver.sh`:
      ```bash
-     chmod +x run_transmitter.sh
+     chmod +x run_receiver.sh
      ```
 
 8. Membuka GNU Radio
@@ -303,12 +327,17 @@ sudo systemctl status docker
      gnuradio-companion
      ```
    - Anda dapat mulai menggambar **flowgraph** atau mengimpor file `receiver.grc` ke dalam folder `persistent`.
+   ![](./Documentation/Images/Memulai%20Proyek%20dengan%20Visual%20Studio%20Code/Receiver/2.png)
 
 9. Memastikan USRP B210 Terhubung
     - Jalankan perintah berikut untuk memeriksa koneksi dengan perangkat **USRP B210**:
       ```bash
       uhd_find_devices
       ```
+
+      ![](./Documentation/Images/Memulai%20Proyek%20dengan%20Visual%20Studio%20Code/Transmitter/4.png)
+
+      **Catatan**: Setelah mengetahui alamat serial USRP B210 untuk receiver maka masukkan alamat serial tersebut ke flowgraph transmitter pada block **UHD: USRP Source** di Device Address.
 
 10. Menjalankan dan Menghentikan Flowgraph
     - Jalankan **flowgraph** untuk menghasilkan file `top_block.py`.
@@ -319,125 +348,8 @@ sudo systemctl status docker
       ```bash
       ./run_transmitter.sh
       ```
-    - Jika berhasil, Anda akan melihat **Transmitter FFT Plot** dengan grafik sinyal seperti yang diharapkan.
-
-## 🛠️ Perintah Dasar Docker
-
-### **Melihat Daftar Container**
-- Container yang sedang berjalan:
-  ```bash
-  docker ps
-  ```
-- Semua container (berjalan dan berhenti):
-  ```bash
-  docker ps -a
-  ```
-
-### **Mengelola Container**
-- Menghentikan container:
-  ```bash
-  docker stop <container_id_or_name>
-  ```
-- Menghapus container:
-  ```bash
-  docker rm <container_id_or_name>
-  ```
-
-### **Melihat dan Mengelola Images**
-- Daftar image yang tersimpan:
-  ```bash
-  docker images
-  ```
-- Menghapus image:
-  ```bash
-  docker rmi <image_id_or_name>
-  ```
-  Contoh:
-  ```bash
-  docker rmi <repository_name>:<image_id_or_name>
-  ```
-
-### **Membersihkan Docker**
-- Melihat penggunaan memori Docker:
-  ```bash
-  docker system df
-  ```
-- Menghapus data yang tidak terpakai:
-  ```bash
-  docker system prune -a --volumes -f
-  ```
-
-### **Mengelola Volume**
-- Melihat daftar volume:
-  ```bash
-  docker volume ls
-  ```
-- Menghapus volume:
-  ```bash
-  docker volume rm <nama_volume>
-  ```
-
-### **Mengelola File**
-- Menyalin file dari container ke direktori Downloads:
-  - **Transmitter:**
-    ```bash
-    docker cp CONTAINER_ID:/home/gnuradio-transmitter/persistent/NAMA_FILE ~/Downloads/
-    ```
-  - **Receiver:**
-    ```bash
-    docker cp CONTAINER_ID:/home/gnuradio-receiver/persistent/NAMA_FILE ~/Downloads/
-    ```
-
-- Menyalin file dari Downloads ke container:
-  - **Transmitter:**
-    ```bash
-    docker cp ~/Downloads/NAMA_FILE CONTAINER_ID:/home/gnuradio-transmitter/persistent/
-    ```
-  - **Receiver:**
-    ```bash
-    docker cp ~/Downloads/NAMA_FILE CONTAINER_ID:/home/gnuradio-receiver/persistent/
-    ```
-
----
-
-## 🌐 Perintah Dasar UHD
-- **Menemukan perangkat UHD:**
-  ```bash
-  uhd_find_devices
-  ```
-- **Memeriksa detail perangkat UHD:**
-  ```bash
-  uhd_usrp_probe
-  ```
-
----
-
-## ⚙️ Instalasi dan Penghapusan GNU Radio & UHD
-
-### **Menginstal GNU Radio versi terbaru**
-```bash
-sudo apt-get install gnuradio
-```
-
-### **Menghapus GNU Radio**
-```bash
-sudo apt-get remove --purge gnuradio
-sudo apt-get autoremove
-sudo apt-get autoclean
-```
-
-### **Menginstal UHD versi terbaru**
-```bash
-sudo add-apt-repository ppa:ettusresearch/uhd
-sudo apt install uhd-host
-```
-
-### **Menghapus UHD**
-```bash
-sudo apt remove uhd-host
-```
-
----
+    - Jika berhasil, Anda akan melihat **Transmitter FFT Plot** dengan grafik sinyal seperti yang diharapkan.  
+    ![](./Documentation/Images/Memulai%20Proyek%20dengan%20Visual%20Studio%20Code/Receiver/1.jpg)
 
 ## 🔗 Referensi
 - **Instalasi Docker di Ubuntu:** [PhoenixNAP](https://phoenixnap.com/kb/install-docker-on-ubuntu-20-04)
@@ -450,5 +362,4 @@ sudo apt remove uhd-host
 
 ---
 
-💡 **STAY CURIOUS**
-
+# 💡 STAY CURIOUS #
