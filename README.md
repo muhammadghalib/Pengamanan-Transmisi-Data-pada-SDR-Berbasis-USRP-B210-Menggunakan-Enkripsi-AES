@@ -100,73 +100,111 @@ sudo systemctl status docker
 ## Memulai Bekerja dengan Visual Studio Code
 
 ### **Transmitter**
-1. Klik kanan pada container ubuntu:gnuradio-v37-transmitter lalu start.
-2. Klik kanan lagi pada container ubuntu:gnuradio-v37-transmitter lalu Attach Visual Studio Code.
-3. Buka terminal dengan cara menekan ctrl+shift+p lalu ketikkan View:Toggle Terminal dan pastikan anda berada di gnuradio-transmitter@muhammad-ghalib.
-4. Didalam folder persistent buat file `send_message.txt` dan berikan pesan yang akan dikirimkan ke USRP B210 receiver didalam file tersebut.
-5. Di terminal jalankan perintah ini untuk memasang library pycryptodome.
-   ```bash
-   pip install pycryptodome
-   ```
-6. Buat file `aes_encryptor_ecb.py` dan masukkan kode dibawah ini. kode ini berguna untuk mengenkripsi pesan yang ada didalam file send_message.txt dengan algoritma enkripsi AES dengan mode ECB menggunakan secret key 1111111111111111.
-   ```bash
-   from Crypto.Cipher import AES
-   from Crypto.Util.Padding import pad
-   import binascii
+1. Menjalankan Container
+   - Klik kanan pada container `ubuntu:gnuradio-v37-transmitter` lalu pilih **Start** untuk menjalankan container.
+   - Setelah container aktif, klik kanan kembali pada container yang sama dan pilih **Attach Visual Studio Code** untuk terhubung dengan Visual Studio Code.
 
-   input_file = "send_message.txt"
-   output_file = "encrypted_send_message.txt"
+2. Membuka Terminal di Visual Studio Code
+   - Tekan `Ctrl + Shift + P` untuk membuka Command Palette.
+   - Ketikkan `View: Toggle Terminal` dan tekan `Enter`.
+   - Pastikan Anda berada di terminal dengan path `gnuradio-transmitter@muhammad-ghalib`.
 
-   # Secret Key (harus 16, 24, atau 32 byte)
-   secret_key = b"1111111111111111"[:16]
+3. Membuat dan Mengisi File Pesan
+   - Di dalam folder `persistent`, buat file baru bernama `send_message.txt`.
+   - Tambahkan pesan yang akan dikirimkan ke **USRP B210 receiver** ke dalam file tersebut.
 
-   with open(input_file, "r") as file:
-       plaintext = file.read()
+4. Memasang Library PyCryptodome
+   - Di terminal, jalankan perintah berikut untuk memasang library **PyCryptodome**:
+     ```bash
+     pip install pycryptodome
+     ```
 
-   cipher = AES.new(secret_key, AES.MODE_ECB)
-   ciphertext = cipher.encrypt(pad(plaintext.encode('utf-8'), AES.block_size))
+5. Membuat File Python untuk Enkripsi
+   - Buat file baru bernama `aes_encryptor_ecb.py`.
+   - Salin dan tempel kode berikut ke dalam file tersebut:
+     ```python
+     from Crypto.Cipher import AES
+     from Crypto.Util.Padding import pad
+     import binascii
 
-   with open(output_file, "w") as file:
-       file.write(binascii.hexlify(ciphertext).decode('utf-8') + "\n")
+     input_file = "send_message.txt"
+     output_file = "encrypted_send_message.txt"
 
-   print("Pesan dari '{}' telah berhasil dienkripsi dan disimpan di '{}'.".format(input_file, output_file))
-   ```
-7. Buat file `encrypted_send_message.txt`. file ini berguna untuk menyimpan hasil enkripsi dalam bentuk HEX.
-8. Buat file `run_transmitter.sh`. file ini berguna untuk menjalankan perintah enkripsi dan memulai transmisi pesan.
-   ```bash
-   echo "Step 1 = Menjalankan aes_encryptor_ecb.py ..."
-   python aes_encryptor_ecb.py
-   if [ $? -ne 0 ]; then
-       echo "Eksekusi aes_encryptor_ecb.py gagal."
-       exit 1
-   fi
+     # Secret Key (harus 16, 24, atau 32 byte)
+     secret_key = b"1111111111111111"[:16]
 
-   echo -e "\nStep 2 = Menjalankan top_block.py..."
-   python top_block.py
-   if [ $? -ne 0 ]; then
-       echo "Eksekusi top_block.py gagal."
-       exit 1
-   fi
-   ```
-9. Di terminal jalankan perintah ini lalu enter.
-    ```bash
-    chmod +x run_transmitter.sh
-    ```
-10. Jalankan GNU Radio di terminal.
-    ```bash
-    gnuradio-companion
-    ```
-11. Mulai menggambar flowgraph atau import file `transmitter.grc` ke dalam folder persistent.
-12. Di terminal jalankan perintah ini untuk memastikan USRP B210 apakah terhubung.
-    ```bash
-    uhd_find_devices
-    ```
-13. Run flowgraph untuk menghasilkan file `top_block.py` setelah itu stop flowgraph.
-14. Di terminal jalankan perintah ini lalu enter.
-    ```bash
-    ./run_transmitter.sh
-    ```
-15. Anda akan melihat Transmitter FFT Plot dengan grafik sinyal seperti ini.
+     with open(input_file, "r") as file:
+         plaintext = file.read()
+
+     cipher = AES.new(secret_key, AES.MODE_ECB)
+     ciphertext = cipher.encrypt(pad(plaintext.encode('utf-8'), AES.block_size))
+
+     with open(output_file, "w") as file:
+         file.write(binascii.hexlify(ciphertext).decode('utf-8') + "\n")
+
+     print("Pesan dari '{}' telah berhasil dienkripsi dan disimpan di '{}'.".format(input_file, output_file))
+     ```
+   - File ini akan mengenkripsi pesan dalam file `send_message.txt` menggunakan algoritma **AES** dengan mode **ECB** dan kunci rahasia `1111111111111111`.
+
+6. Membuat File Output Enkripsi
+   - Buat file baru bernama `encrypted_send_message.txt` di dalam folder `persistent`.
+   - File ini akan digunakan untuk menyimpan hasil enkripsi dalam format HEX.
+
+7. Membuat Skrip untuk Menjalankan Transmisi
+   - Buat file baru bernama `run_transmitter.sh`.
+   - Salin dan tempel kode berikut ke dalam file tersebut:
+     ```bash
+     echo "Step 1 = Menjalankan aes_encryptor_ecb.py ..."
+     python aes_encryptor_ecb.py
+     if [ $? -ne 0 ]; then
+         echo "Eksekusi aes_encryptor_ecb.py gagal."
+         exit 1
+     fi
+
+     echo -e "\nStep 2 = Menjalankan top_block.py..."
+     python top_block.py
+     if [ $? -ne 0 ]; then
+         echo "Eksekusi top_block.py gagal."
+         exit 1
+     fi
+     ```
+   - Skrip ini akan:
+     - Menjalankan file `aes_encryptor_ecb.py` untuk enkripsi.
+     - Menjalankan file `top_block.py` untuk memulai transmisi.
+
+8. Memberikan Izin Eksekusi pada Skrip
+   - Di terminal, masuk ke direktori `persistent`:
+     ```bash
+     cd persistent
+     ```
+   - Berikan izin eksekusi ke file `run_transmitter.sh`:
+     ```bash
+     chmod +x run_transmitter.sh
+     ```
+
+9. Membuka GNU Radio
+   - Jalankan perintah berikut di terminal untuk membuka **GNU Radio Companion**:
+     ```bash
+     gnuradio-companion
+     ```
+   - Anda dapat mulai menggambar **flowgraph** atau mengimpor file `transmitter.grc` ke dalam folder `persistent`.
+
+10. Memastikan USRP B210 Terhubung
+    - Jalankan perintah berikut untuk memeriksa koneksi dengan perangkat **USRP B210**:
+      ```bash
+      uhd_find_devices
+      ```
+
+11. Menjalankan dan Menghentikan Flowgraph
+    - Jalankan **flowgraph** untuk menghasilkan file `top_block.py`.
+    - Setelah selesai, hentikan **flowgraph**.
+
+12. Menjalankan Skrip Transmisi
+    - Di terminal, jalankan perintah berikut untuk memulai transmisi:
+      ```bash
+      ./run_transmitter.sh
+      ```
+    - Jika berhasil, Anda akan melihat **Transmitter FFT Plot** dengan grafik sinyal seperti yang diharapkan.
 
 ### **Receiver**
 1. Klik kanan pada container ubuntu:gnuradio-v37-receiver lalu start.
