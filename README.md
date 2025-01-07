@@ -335,7 +335,7 @@ Berikut adalah langkah-langkah lengkap untuk menginstal Docker pada distribusi U
       uhd_find_devices
       ```
 
-      ![](./Documentation/Images/Memulai%20Proyek%20dengan%20Visual%20Studio%20Code/Receiver/4.png)
+      ![](./Documentation/Images/Memulai%20Proyek%20dengan%20Visual%20Studio%20Code/Transmitter/4.png)
 
       **Catatan**: Setelah mengetahui alamat serial USRP B210 untuk receiver maka masukkan alamat serial tersebut ke flowgraph transmitter pada block **UHD: USRP Source** di Device Address.
 
@@ -348,8 +348,9 @@ Berikut adalah langkah-langkah lengkap untuk menginstal Docker pada distribusi U
       ```bash
       ./run_transmitter.sh
       ```
-    - Jika berhasil, Anda akan melihat **Transmitter FFT Plot** dengan grafik sinyal seperti yang diharapkan.  
+    - Jika berhasil, Anda akan melihat **Transmitter FFT Plot** dengan grafik sinyal seperti yang diharapkan dan Pesan yang berhasil didekripsi di terminal.  
     ![](./Documentation/Images/Memulai%20Proyek%20dengan%20Visual%20Studio%20Code/Receiver/1.jpg)
+    ![](./Documentation/Images/Memulai%20Proyek%20dengan%20Visual%20Studio%20Code/Receiver/5.png)
 
 ## 🔗 Referensi
 - **Instalasi Docker di Ubuntu:** [PhoenixNAP](https://phoenixnap.com/kb/install-docker-on-ubuntu-20-04)
