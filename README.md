@@ -127,8 +127,8 @@ sudo systemctl status docker
 
    print("Pesan dari '{}' telah berhasil dienkripsi dan disimpan di '{}'.".format(input_file, output_file))
    ```
-7. Buat file encrypted_send_message.txt. file ini berguna untuk menyimpan hasil enkripsi dalam bentuk HEX.
-8. Buat file run_transmitter.sh. file ini berguna untuk menjalankan perintah enkripsi dan memulai transmisi pesan.
+6. Buat file encrypted_send_message.txt. file ini berguna untuk menyimpan hasil enkripsi dalam bentuk HEX.
+7. Buat file run_transmitter.sh. file ini berguna untuk menjalankan perintah enkripsi dan memulai transmisi pesan.
    ```bash
    echo "Step 1 = Menjalankan aes_encryptor_ecb.py ..."
    python aes_encryptor_ecb.py
@@ -144,25 +144,25 @@ sudo systemctl status docker
        exit 1
    fi
    ```
-10. Di terminal jalankan perintah ini lalu enter.
+8. Di terminal jalankan perintah ini lalu enter.
     ```bash
     chmod +x run_transmitter.sh
     ```
-12. Jalankan GNU Radio di terminal.
+9. Jalankan GNU Radio di terminal.
     ```bash
     gnuradio-companion
     ```
-13. Mulai menggambar flowgraph atau import file transmitter.grc ke dalam folder persistent.
-14. Di terminal jalankan perintah ini untuk memastikan USRP B210 apakah terhubung.
+10. Mulai menggambar flowgraph atau import file transmitter.grc ke dalam folder persistent.
+11. Di terminal jalankan perintah ini untuk memastikan USRP B210 apakah terhubung.
     ```bash
     uhd_find_devices
     ```
-16. Run flowgraph untuk menghasilkan file top_block.py setelah itu stop flowgraph.
-17. Di terminal jalankan perintah ini lalu enter.
+12. Run flowgraph untuk menghasilkan file top_block.py setelah itu stop flowgraph.
+13. Di terminal jalankan perintah ini lalu enter.
     ```bash
     ./run_transmitter.sh
     ```
-18. Anda akan melihat Transmitter FFT Plot dengan grafik sinyal seperti ini.
+14. Anda akan melihat Transmitter FFT Plot dengan grafik sinyal seperti ini.
 
 ### **Receiver**
 1. Klik kanan pada container ubuntu:gnuradio-v37-receiver lalu start.
