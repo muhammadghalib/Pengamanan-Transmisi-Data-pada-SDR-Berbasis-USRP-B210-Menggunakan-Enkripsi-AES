@@ -347,7 +347,7 @@ Berikut adalah langkah-langkah lengkap untuk menginstal Docker pada distribusi U
 11. Menjalankan Skrip Transmisi
     - Di terminal, jalankan perintah berikut untuk memulai transmisi:
       ```bash
-      ./run_transmitter.sh
+      ./run_receiver.sh
       ```
     - Jika berhasil, Anda akan melihat **Transmitter FFT Plot** dengan grafik sinyal seperti yang diharapkan dan Pesan yang berhasil didekripsi di terminal.  
     ![](./Documentation/Images/Memulai%20Proyek%20dengan%20Visual%20Studio%20Code/Receiver/1.jpg)
