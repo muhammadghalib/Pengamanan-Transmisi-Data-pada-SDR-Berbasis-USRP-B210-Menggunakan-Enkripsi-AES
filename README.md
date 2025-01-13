@@ -132,6 +132,19 @@ Berikut adalah langkah-langkah lengkap untuk menginstal Docker pada distribusi U
    - Tambahkan pesan yang akan dikirimkan ke **USRP B210 receiver** ke dalam file tersebut.
 
 4. Memasang Library PyCryptodome
+   - Di terminal, jalankan perintah berikut :
+     ```bash
+     curl https://bootstrap.pypa.io/pip/2.7/get-pip.py -o get-pip.py
+     ```
+     Lalu jalankan get-pip.py :
+     ```bash
+     python get-pip.py
+     ```
+   - Lalu restart Container, dan cek apakah pip sudah terinstall :
+     ```bash
+     pip --version
+     ```
+     Jika sudah ada versi dari pip maka instalasi pip sudah berhasil.
    - Di terminal, jalankan perintah berikut untuk memasang library **PyCryptodome**:
      ```bash
      pip install pycryptodome
