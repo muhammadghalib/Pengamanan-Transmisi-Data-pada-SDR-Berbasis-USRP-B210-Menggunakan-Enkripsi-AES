@@ -1,7 +1,7 @@
 # ᯤ Keamanan Transmisi Data Pada Perangkat Software-Defined Radio (SDR) Berbasis USRP B210
 
 ## Deskripsi proyek
-Proyek ini bertujuan untuk meningkatkan keamanan transmisi data pada perangkat Software-Defined Radio (SDR) berbasis USRP B210. Pendekatan yang digunakan adalah dengan mengimplementasikan enkripsi ringan berbasis Advanced Encryption Standard (AES) pada lapisan aplikasi SDR. Hal ini dilakukan untuk melindungi data yang dikirim melalui SDR dari risiko intersepsi dan manipulasi. Proyek ini memanfaatkan perangkat keras USRP B210 dan antena SDR, serta menggunakan perangkat lunak GNU Radio, OpenSSL, dan GQRX untuk membangun sistem yang aman. Dengan penerapan enkripsi ini, diharapkan data yang ditransmisikan melalui SDR dapat terlindungi dari penyadapan dan manipulasi yang berpotensi merugikan.
+Proyek ini bertujuan untuk meningkatkan keamanan transmisi data pada perangkat Software-Defined Radio (SDR) berbasis USRP B210. Pendekatan yang digunakan adalah dengan mengimplementasikan enkripsi ringan berbasis Advanced Encryption Standard (AES) pada lapisan aplikasi SDR. Hal ini dilakukan untuk melindungi data yang dikirim melalui SDR dari risiko intersepsi dan manipulasi. Proyek ini memanfaatkan perangkat keras USRP B210 dan antena SDR, serta menggunakan perangkat lunak GNU Radio untuk membangun sistem yang aman. Dengan penerapan enkripsi ini, diharapkan data yang ditransmisikan melalui SDR dapat terlindungi dari penyadapan dan manipulasi yang berpotensi merugikan.
 
 ## 🔌 Hardware yang Digunakan
 - 2x USRP B210
