@@ -377,6 +377,5 @@ Berikut adalah langkah-langkah lengkap untuk menginstal Docker pada distribusi U
 
 ## 📸 Dokumentasi
 ![](./Documentation/Images/Dokumentasi%20Lab/Dokumentasi%20Lab%201.jpg)
-![](./Documentation/Images/Dokumentasi%20Lab/Dokumentasi%20Lab%202.jpg)
 
 # 💡 STAY CURIOUS #  
