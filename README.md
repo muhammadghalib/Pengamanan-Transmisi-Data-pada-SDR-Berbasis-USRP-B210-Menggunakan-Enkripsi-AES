@@ -379,4 +379,6 @@ Berikut adalah langkah-langkah lengkap untuk menginstal Docker pada distribusi U
 ![](./Documentation/Images/Dokumentasi%20Lab/Dokumentasi%20Lab%201.jpg)
 *Gambar di atas diambil di Laboratorium Teknik Telekomunikasi, Politeknik Negeri Sriwijaya.*
 
+---
+
 # 💡 STAY CURIOUS #  
